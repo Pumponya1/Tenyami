@@ -33,13 +33,15 @@
 
     #message {
       position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
       z-index: 10;
       font-size: 2em;
       color: #e60026;
       opacity: 0;
       text-align: center;
       transition: opacity 2s ease, transform 1s ease;
-      transform: scale(0.9);
       text-shadow: 0 0 15px rgba(230,0,38,0.6);
     }
     #message.show {
@@ -50,22 +52,22 @@
     /* Пульсация + сияние */
     @keyframes heartbeat {
       0%, 100% {
-        transform: scale(1);
+        transform: translateX(-50%) scale(1);
         color: #e60026;
         text-shadow: 0 0 15px rgba(230,0,38,0.6), 0 0 30px rgba(255,50,70,0.4);
       }
       25% {
-        transform: scale(1.1);
+        transform: translateX(-50%) scale(1.1);
         color: #ff1a40;
         text-shadow: 0 0 25px rgba(255,26,64,0.8), 0 0 40px rgba(255,80,100,0.6);
       }
       50% {
-        transform: scale(1.05);
+        transform: translateX(-50%) scale(1.05);
         color: #cc001f;
         text-shadow: 0 0 20px rgba(204,0,31,0.7), 0 0 35px rgba(255,60,80,0.5);
       }
       75% {
-        transform: scale(1.1);
+        transform: translateX(-50%) scale(1.1);
         color: #ff1a40;
         text-shadow: 0 0 25px rgba(255,26,64,0.8), 0 0 40px rgba(255,80,100,0.6);
       }
@@ -99,6 +101,8 @@
     #phrase {
       position: absolute;
       bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 1.3em;
       color: #111;
       text-align: center;

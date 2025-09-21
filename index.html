@@ -32,20 +32,27 @@
     }
 
     #message {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
       font-size: 2em;
       color: #e60026;
       opacity: 0;
       transition: opacity 2s ease;
       z-index: 10;
+      text-align: center;
       text-shadow: 0 0 15px rgba(230,0,38,0.6);
     }
     #message.show {
       opacity: 1;
       animation: heartbeat 2s infinite;
+    }
+
+    .emoji {
+      display: inline-block;
+      width: 1.2em;
+      text-align: center;
     }
 
     /* Пульсация + сияние */
@@ -115,7 +122,11 @@
 </head>
 <body>
   <div class="fog"></div>
-  <div id="message">❤️ Я люблю тебя со всеми твоими тенями 🌑</div>
+  <div id="message">
+    <span class="emoji">❤️</span>
+    Я люблю тебя со всеми твоими тенями
+    <span class="emoji">🌑</span>
+  </div>
   <div id="phrase"></div>
 
   <audio id="music" src="music.mp3"></audio>
@@ -142,6 +153,7 @@
       "Я твоя тень и свет 🌑✨",
       "Ты моё счастье 🌹",
       "Люблю каждую твою грань 💎",
+      "Моя самая любимая девочка 🐾"
     ];
 
     body.addEventListener("click", (e) => {

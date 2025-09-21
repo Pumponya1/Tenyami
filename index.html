@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Со всеми твоими тенями</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      overflow: hidden;
+      font-family: "Arial", sans-serif;
+      cursor: pointer;
+    }
+
+    #message {
+      position: absolute;
+      z-index: 10;
+      font-size: 2em;
+      color: #111;
+      opacity: 0;
+      text-align: center;
+      transition: opacity 2s ease, transform 1s ease;
+      transform: scale(0.9);
+    }
+
+    #message.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .shadow {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.7);
+      animation: grow 3s forwards;
+    }
+
+    @keyframes grow {
+      from {
+        transform: scale(0);
+        opacity: 0.8;
+      }
+      to {
+        transform: scale(10);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="message">❤️ Я люблю тебя со всеми твоими тенями 🌑</div>
+
+  <script>
+    const body = document.body;
+    const message = document.getElementById("message");
+    let shown = false;
+
+    body.addEventListener("click", (e) => {
+      // Создаём тень
+      const shadow = document.createElement("div");
+      shadow.className = "shadow";
+      shadow.style.width = shadow.style.height = `${50 + Math.random()*100}px`;
+      shadow.style.left = `${e.clientX - 50}px`;
+      shadow.style.top = `${e.clientY - 50}px`;
+      body.appendChild(shadow);
+
+      setTimeout(() => {
+        shadow.remove();
+      }, 3000);
+
+      // Показываем текст один раз
+      if (!shown) {
+        shown = true;
+        setTimeout(() => {
+          message.classList.add("show");
+        }, 1000);
+      }
+    });
+  </script>
+</body>
+</html>

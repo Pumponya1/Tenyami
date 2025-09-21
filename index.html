@@ -10,26 +10,25 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(to bottom, #ffffff, #111111);
+      background: linear-gradient(to bottom, #eaeaea, #111111);
       overflow: hidden;
       font-family: "Arial", sans-serif;
       cursor: pointer;
       position: relative;
     }
 
-    /* Туманная дымка */
+    /* Туман через полупрозрачные белые пятна */
     .fog {
       position: absolute;
-      width: 200%;
-      height: 200%;
-      background: url("https://i.ibb.co/3M3wh9b/fog.png") repeat;
-      opacity: 0.15;
-      animation: drift 60s linear infinite;
+      width: 300%;
+      height: 300%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+      animation: fogmove 60s linear infinite;
       z-index: 1;
     }
-    @keyframes drift {
-      from { transform: translateX(0) }
-      to { transform: translateX(-50%) }
+    @keyframes fogmove {
+      from { transform: translateX(0) translateY(0); }
+      to { transform: translateX(-200px) translateY(-100px); }
     }
 
     #message {
@@ -86,4 +85,53 @@
 </head>
 <body>
   <div class="fog"></div>
-  <div id="message">❤
+  <div id="message">❤️ Я люблю тебя со всеми твоими тенями 🌑</div>
+  <div id="phrase"></div>
+
+  <!-- Музыка -->
+  <iframe id="music" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
+
+  <script>
+    const body = document.body;
+    const message = document.getElementById("message");
+    const phrase = document.getElementById("phrase");
+    const music = document.getElementById("music");
+
+    let shown = false;
+    let phraseIndex = 0;
+    const phrases = [
+      "Обожульки тебя",
+      "Я всегда с тобой",
+      "Улыбайся почаще",
+      "Ты у меня самая красивая"
+    ];
+
+    body.addEventListener("click", (e) => {
+      // Сердечки
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = `${e.clientX - 15}px`;
+      heart.style.top = `${e.clientY - 15}px`;
+      body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 3000);
+
+      // Показать главный текст
+      if (!shown) {
+        shown = true;
+        setTimeout(() => {
+          message.classList.add("show");
+          // Включаем музыку
+          music.src = "https://www.youtube.com/embed/GqDD02L3LhY?autoplay=1";
+        }, 1000);
+      }
+
+      // Показать фразы по очереди
+      if (phraseIndex < phrases.length) {
+        phrase.textContent = phrases[phraseIndex];
+        phrase.classList.add("show");
+        phraseIndex++;
+      }
+    });
+  </script>
+</body>
+</html>

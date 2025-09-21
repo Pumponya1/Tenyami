@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>chem</title>
+  <title>Со всеми твоими тенями</title>
   <style>
     body {
       margin: 0;
@@ -10,76 +10,80 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #fff;
+      background: linear-gradient(to bottom, #ffffff, #111111);
       overflow: hidden;
       font-family: "Arial", sans-serif;
       cursor: pointer;
+      position: relative;
+    }
+
+    /* Туманная дымка */
+    .fog {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: url("https://i.ibb.co/3M3wh9b/fog.png") repeat;
+      opacity: 0.15;
+      animation: drift 60s linear infinite;
+      z-index: 1;
+    }
+    @keyframes drift {
+      from { transform: translateX(0) }
+      to { transform: translateX(-50%) }
     }
 
     #message {
       position: absolute;
       z-index: 10;
       font-size: 2em;
-      color: #111;
+      color: #fff;
       opacity: 0;
       text-align: center;
       transition: opacity 2s ease, transform 1s ease;
       transform: scale(0.9);
     }
-
     #message.show {
       opacity: 1;
       transform: scale(1);
     }
 
-    .shadow {
+    .heart {
       position: absolute;
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 0, 0, 0.5);
+      transform: rotate(45deg) scale(0);
+      animation: float 3s forwards;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 0, 0, 0.5);
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.7);
-      animation: grow 3s forwards;
+    }
+    .heart::before { top: -15px; left: 0; }
+    .heart::after { left: -15px; top: 0; }
+
+    @keyframes float {
+      from { transform: rotate(45deg) scale(0); opacity: 1; }
+      to { transform: rotate(45deg) scale(6); opacity: 0; }
     }
 
-    @keyframes grow {
-      from {
-        transform: scale(0);
-        opacity: 0.8;
-      }
-      to {
-        transform: scale(10);
-        opacity: 0;
-      }
+    #phrase {
+      position: absolute;
+      bottom: 40px;
+      font-size: 1.3em;
+      color: #fff;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
+    #phrase.show { opacity: 1; }
   </style>
 </head>
 <body>
-  <div id="message">❤️ Я люблю тебя со всеми твоими тенями 🌑</div>
-
-  <script>
-    const body = document.body;
-    const message = document.getElementById("message");
-    let shown = false;
-
-    body.addEventListener("click", (e) => {
-      // Создаём тень
-      const shadow = document.createElement("div");
-      shadow.className = "shadow";
-      shadow.style.width = shadow.style.height = `${50 + Math.random()*100}px`;
-      shadow.style.left = `${e.clientX - 50}px`;
-      shadow.style.top = `${e.clientY - 50}px`;
-      body.appendChild(shadow);
-
-      setTimeout(() => {
-        shadow.remove();
-      }, 3000);
-
-      // Показываем текст один раз
-      if (!shown) {
-        shown = true;
-        setTimeout(() => {
-          message.classList.add("show");
-        }, 1000);
-      }
-    });
-  </script>
-</body>
-</html>
+  <div class="fog"></div>
+  <div id="message">❤

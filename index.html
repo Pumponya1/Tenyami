@@ -55,27 +55,15 @@
       text-align: center;
     }
 
-    /* Пульсация + сияние */
+    /* Пульсация без сдвига */
     @keyframes heartbeat {
       0%, 100% {
-        transform: scale(1);
-        color: #e60026;
-        text-shadow: 0 0 15px rgba(230,0,38,0.6), 0 0 30px rgba(255,50,70,0.4);
-      }
-      25% {
-        transform: scale(1.1);
-        color: #ff1a40;
-        text-shadow: 0 0 25px rgba(255,26,64,0.8), 0 0 40px rgba(255,80,100,0.6);
+        letter-spacing: 0px;
+        text-shadow: 0 0 10px rgba(230,0,38,0.6), 0 0 20px rgba(255,50,70,0.4);
       }
       50% {
-        transform: scale(1.05);
-        color: #cc001f;
-        text-shadow: 0 0 20px rgba(204,0,31,0.7), 0 0 35px rgba(255,60,80,0.5);
-      }
-      75% {
-        transform: scale(1.1);
-        color: #ff1a40;
-        text-shadow: 0 0 25px rgba(255,26,64,0.8), 0 0 40px rgba(255,80,100,0.6);
+        letter-spacing: 2px;
+        text-shadow: 0 0 25px rgba(255,26,64,0.9), 0 0 35px rgba(255,80,100,0.7);
       }
     }
 
@@ -106,15 +94,16 @@
 
     #phrase {
       width: 100%;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
       text-align: center;
       position: absolute;
-      bottom: 40px;
-      font-size: 1.3em;
+      bottom: 50px;
+      font-size: 1.6em; /* больше размер для телефона */
       color: #111;
       opacity: 0;
       transition: opacity 1s ease;
+      line-height: 1.4em;
     }
     #phrase.show { opacity: 1; }
     #phrase.hide { opacity: 0; }
